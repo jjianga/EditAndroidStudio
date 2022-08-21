@@ -1,0 +1,125 @@
+# 井号开头的表示为注释
+# 设置 需要替换的图片路径
+SET VALUE;
+imgPath
+# 循环替换图片
+IMAG EREPLACE;
+# 设置工程相对路径
+res/
+# 一个文件夹下替换多个图片
+drawable-hdpi/=bg1.jpg
+# 多个文件夹下 分别替换多个图片
+drawable-hdpi/,drawable-ldpi/,drawable-mdpi/,drawable-xhdpi/,drawable-xxhdpi/=ic_home_actionbar_select0.png,ic_home_actionbar_select1.png,ic_home_actionbar_select2.png,ic_home_actionbar_select3.png,ic_home_actionbar_select4.png,ic_launcher.png,mine_bg.png,system_ask_title.png,user_ask_title.png
+
+# 循环替换两张图片
+IMAG EREPLACE;
+assets/,assets/img
+/=default_icon1.png
+
+SET VALUE;
+dataPath
+# 循环替换文件
+IMAG EREPLACE;
+assets/
+/=dailyimg,questionimg,userimg,User.json,QABeanTask.json,QABean.json,AnBean.json,gift.json
+
+# 打开String类型文件
+CD FILE;
+AndroidManifest.xml
+
+# 设置包名
+SET VALUE;
+packageName
+
+# 替换两处包名
+REPLACE REGULAR;
+package="(.*?)"
+android:authorities="(.*?).fileprovider"
+
+SET VALUE;
+version
+
+REPLACE REGULAR;
+android:versionCode="(.*?)"
+
+SET VALUE;
+versionName
+
+REPLACE REGULAR;
+android:versionName="(.*?)"
+
+SET VALUE;
+baiduStatistics
+
+REPLACE REGULAR;
+<meta-data android:name="BaiduMobAd_STAT_ID" android:value="(.*?)" />
+
+SET VALUE;
+baiDuChannel
+
+REPLACE REGULAR;
+<meta-data android:name="BaiduMobAd_CHANNEL" android:value="(.*?)" />
+
+SAVE FILE;
+
+# 打开 colors 文件
+CD FILE;
+res/values/colors.xml
+
+# 设置要替换的颜色
+SET VALUE;
+color
+
+# 循环替换相关颜色
+REPLACE FOR REGULAR;
+myName
+(<color name="myName">).*?(</color>)=systembar_color,selected_color,login_textColor,maintab_topbar_bg_color
+
+SAVE FILE;
+
+
+CD FILE;
+res/values/strings.xml
+
+SET VALUE;
+appShowName
+
+REPLACE REGULAR;
+<string name="app_name">(.*?)</string>
+<string name="discover_top_name">(.*?)</string>
+<string name="protocol">(.*?)用户协议</string>
+<string name="app_help">(.*?)使用帮助</string>
+<string name="app_name_userdefault">(.*?)</string>
+<string name="tv_app_logo2">(.*?)</string>
+<string name="tv_app_logo1">(.*?)</string>
+<string name="search_hint_text">(.*?)</string>
+
+# 设置文件名
+SET VALUE;
+fileString
+# 另存到新路径
+SAVE AS NEW FILE;
+assets/
+
+SAVE FILE;
+
+CD FILE;
+project.properties
+
+SET VALUE;
+dependPackagePath
+
+REPLACE REGULAR;
+android.library.reference.1=(.*)
+
+SAVE FILE;
+
+# 结束程序
+EXIT;
+# 工程混淆执行代码配置文件路径
+hotplug\wenda1_0\
+# 被混淆项目【源代码，res，资源，AndroidManifest】相对路径，按顺序设置
+src\
+res\
+assets\
+AndroidManifest.xml

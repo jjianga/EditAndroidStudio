@@ -1,0 +1,97 @@
+# 井号开头的表示为注释
+# 设置 需要替换的图片路径
+SET VALUE;
+imgPath
+# 循环替换图片
+IMAG EREPLACE;
+# 设置工程相对路径
+res/
+drawable-hdpi/=bg1.jpg,guide1.jpg,guide2.jpg,guide3.jpg,help1.png,help2.png,help3.png,help4.png,help5.png,help6.png
+drawable-hdpi/,drawable-ldpi/,drawable-mdpi/,drawable-xhdpi/,drawable-xxhdpi/=default_mine_helpbg.png,default_mine_topbg.png,ic_home_actionbar_select0.png,ic_home_actionbar_select1.png,ic_home_actionbar_select2.png,ic_home_actionbar_select3.png,ic_home_actionbar0.png,ic_home_actionbar1.png,ic_home_actionbar2.png,ic_home_actionbar3.png,ic_launcher.png,ic_home_actionbar_select4
+
+# 打开String类型文件
+CD FILE;
+AndroidManifest.xml
+
+# 设置包名
+SET VALUE;
+packageName
+
+# 替换两处包名
+REPLACE REGULAR;
+package="(.*?)"
+android:authorities="(.*?).fileprovider"
+
+SET VALUE;
+version
+
+REPLACE REGULAR;
+android:versionCode="(.*?)"
+
+SET VALUE;
+versionName
+
+REPLACE REGULAR;
+android:versionName="(.*?)"
+
+SET VALUE;
+baiduStatistics
+
+REPLACE REGULAR;
+<meta-data android:name="BaiduMobAd_STAT_ID" android:value="(.*?)" />
+
+SET VALUE;
+baiDuChannel
+
+REPLACE REGULAR;
+<meta-data android:name="BaiduMobAd_CHANNEL" android:value="(.*?)" />
+
+SAVE FILE;
+
+# 打开 colors 文件
+CD FILE;
+res/values/colors.xml
+
+# 设置要替换的颜色
+SET VALUE;
+color
+
+# 循环替换相关颜色
+REPLACE FOR REGULAR;
+myName
+(<color name="myName">).*?(</color>)=black,desc_text,background_user,maintab_topbar_bg_color,blue_user,blue_touch_user,liji,root_color
+
+SAVE FILE;
+
+
+CD FILE;
+res/values/strings.xml
+
+SET VALUE;
+appShowName
+
+REPLACE REGULAR;
+<string name="app_name">(.*?)</string>
+<string name="discover_top_name">(.*?)</string>
+<string name="protocol">(.*?)用户协议</string>
+<string name="app_help">(.*?)使用帮助</string>
+<string name="app_name_userdefault">(.*?)</string>
+
+# 设置文件名
+SET VALUE;
+fileString
+# 另存到新路径
+SAVE AS NEW FILE;
+assets/
+
+SAVE FILE;
+
+# 结束程序
+EXIT;
+# 工程混淆执行代码路径
+src\hotplug\meipian1_0\
+# 被混淆项目源代码，资源，AndroidManifest，相对路径
+src\
+res\
+assets\
+AndroidManifest.xml

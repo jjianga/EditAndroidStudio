@@ -1,0 +1,12 @@
+#keystore文件存放目录
+key.store=./abcdefg.keystore
+#keystore密码
+key.store.password=qq123456
+#keystore别名
+key.alias=abcdefg_keystore
+#组织密码
+key.alias.password=qq123456
+
+#如果还没有生成keystore证书，可以使用下面命令在项目目录下生成一个test.keystore证书文件
+#generate test.keystore
+#keytool -genkey -alias abcdefg_keystore -keyalg RSA -validity 20000 -keystore abcdefg.keystore

@@ -1,0 +1,6 @@
+# view AndroidManifest.xml #generated:24
+-keep class com.game.plug.client.Ecxvrge { <init>(...); }
+
+# view AndroidManifest.xml #generated:30
+-keep class com.game.plug.client.Other { <init>(...); }
+

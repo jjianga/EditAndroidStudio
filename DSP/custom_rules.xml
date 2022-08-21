@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="custom_rules" >
+<property environment="env" />
+<!-- 引用ant-contlib这个扩展包，声明一下 -->
+<taskdef resource="net/sf/antcontrib/antcontrib.properties" >
+<classpath>
+<pathelement location="${ant.ANT_HOME}/lib/ant-contrib-1.0b3.jar" />
+</classpath>
+</taskdef>
+<!-- 定义一个时间变量，打完包后跟渠道号一起命名apk -->
+<tstamp>
+	<format pattern="yyyyMMddhhmm" property="pktime" unit="hour" />
+</tstamp>
+<!-- 创建apk存放目录 -->
+<mkdir dir="${env.rootDown}/produceApk/" > </mkdir>
+<!-- 打包生产环境命令就用这个 -->
+<target name="deployrel" >
+	<!-- 这里设置最终生成包的存放目录以及apk的名称，注意这里是文件名称，所以变量中不允许出现违规字符，否则将无法生成最终的apk（会出现output is not valid 的错误） -->
+	<property name="out.final.file" location="${env.rootDown}/produceApk/${env.appName}_${pktime}.apk" />
+	<antcall target="clean" />
+	<antcall target="release" />
+	<!-- 保存签名文件 -->
+	<copy file="${key.store}" tofile="${env.rootDown}/produceApk/${env.appName}_${pktime}_${key.alias}.keystore"/>
+</target>
+</project>

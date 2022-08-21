@@ -1,0 +1,24 @@
+config|隐藏参数|config\script\wenda1.0.txt|问答eclipse版本打包
+tmpProjectPath|隐藏参数|C:\Users\Administrator\Desktop\tmp2|临时目录
+无|标题|问答1.0打包|1
+appShowName|标题和输入框|1.请填写app名称
+projectPath|选择文件夹|2.请选择app工程目录|选择目录
+imgPath|选择文件夹|3.请选择替换的图片目录|选择目录
+dataPath|选择文件夹|4.请选择替换的数据目录|选择目录
+dependPackagePath|选择文件夹|5.请选择依赖工程目录|选择目录
+storePath|checkBox|6.请选择app签名文件|重新生成|生成文件
+alias|标题和输入框|7.请填写KeyStore别名
+aliasPassWord|标题和输入框|8.请填写KeyStore密码
+passWord|标题和输入框|9.请填写组织密码
+packageName|标题和输入框|10.请填写包名
+baiDuChannel|标题和输入框|11.请填写百度统计渠道 other
+color|标题和输入框|12.请填写要替换的颜色值 #123456
+baiduStatistics|标题和输入框|13.请填写百度统计
+version|标题和输入框|14.请填写版本 整数
+versionName|标题和输入框|15.请填写版本名
+adUrl|标题和输入框|16.AD信息流配置文件地址
+adAppName|标题和输入框|17.AD信息流获取数据的名称
+dspUrl|标题和输入框|18.请填写DSPUrl
+dspImgPath|选择文件|19.请选择DSP替换的图片|选择文件
+dateNode|获取时间|20.请选择DSP时间节点|获取时间
+无|打包|按钮|开始打包!
