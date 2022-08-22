@@ -19,30 +19,31 @@ import com.zhkj.log.Log;
 public class ReflectGetClazzUtils{
 	/**
 	 * 读取目录下所有配置文件
-	 * @param filePath
-	 * @return
+	 * @param filePath 文件路径
+	 * @return 类的模版列表
 	 */
 	public static <T> List<T> getClazzS(String filePath){
-		ArrayList<String> fileS = new ArrayList<String>();
+		ArrayList<String> fileS = new ArrayList<>();
 		FileUtils.listFilesString(new File(filePath),fileS);
-		ArrayList<T> objectS = new ArrayList<T>();
-		for (int i = 0; i < fileS.size(); i++) {
+		ArrayList<T> objectS = new ArrayList<>();
+		for (String file : fileS) {
 			try {
-				if(".properties".equals(FileUtils.getFileNameSuffix(fileS.get(i)))){
-					objectS.add(getClazz(fileS.get(i)));
+				if (".properties".equals(FileUtils.getFileNameSuffix(file))) {
+					objectS.add(getClazz(file));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println(fileS.get(i) + ":错误！");
+				System.out.println(file + ":错误！");
 			}
 		}
 		return objectS;
 	}
-	
+
 	/**
 	 * 通过配置文件动态加载类
-	 * @param filePath
-	 * @throws Exception
+	 * @param filePath 路径
+	 * @param <T> 类的模版
+	 * @return 类的对象
 	 */
 	@SuppressWarnings("unchecked") 
 	public static <T> T getClazz(String filePath){
@@ -67,21 +68,23 @@ public class ReflectGetClazzUtils{
 		//给变量设置值
 		if(paramSStr != null){
 			String[] paramS = paramSStr.split(",");
-			for (int i = 0; i < paramS.length; i++) {			//从界面拿值
+			for (String param : paramS) {            //从界面拿值
 				try {
-			        Field nameField;
-						nameField = cls.getDeclaredField(paramS[i]);// 获取成员变量:name
-			        nameField.setAccessible(true);					// 设置操作权限为true
-			        nameField.set(obj, ValueSUtils.getValue(paramS[i]));//赋值
+					Field nameField;
+					assert cls != null;
+					nameField = cls.getDeclaredField(param);// 获取成员变量:name
+					nameField.setAccessible(true);                    // 设置操作权限为true
+					nameField.set(obj, ValueSUtils.getValue(param));//赋值
 				} catch (Exception e) {
-					Log.appendErr("变量始化错误！配置目录【"+filePath+ ",类【" +
-												clazzStr+",属性【" + paramS[i]);
+					Log.appendErr("变量始化错误！配置目录【" + filePath + ",类【" +
+							clazzStr + ",属性【" + param);
 					e.printStackTrace();
-				} 
+				}
 			}
 		}
 		// 得到初始化方法 在这里初始化对象
 		try {
+			assert cls != null;
 			Method method = cls.getMethod("init", HashMap.class);
 			//TODO 从界面拿到对应的值
 			method.invoke(obj, rpu.getMap());
