@@ -18,7 +18,7 @@ version|标题和输入框|14.请填写版本 整数
 versionName|标题和输入框|15.请填写版本名
 adUrl|标题和输入框|16.AD信息流配置文件地址
 adAppName|标题和输入框|17.AD信息流获取数据的名称
-fladData|JComboBox下拉选|18.仅拿当前游戏的数据true 或者 false|true|false
+gameData|JComboBox下拉选|18.仅拿当前游戏的数据true 或者 false|true|false
 dspUrl|标题和输入框|19.请填写DSPUrl
 dspImgPath|选择文件|20.请选择DSP替换的图片|选择文件
 dateNode|获取时间|21.请选择DSP时间节点|获取时间

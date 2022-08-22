@@ -99,21 +99,3 @@ public class ReflectGetClazzUtils{
 		}
 	}
 }
-
-
-class All{
-	private String a = "c";
-	public String c = "c";
-	public All() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public void init(HashMap<String, Object> map){
-		System.out.println(map.get("a") + "执行了a！");
-		System.out.println(map.get("b") + "执行了b！");
-		System.out.println(map.get("c") + "执行了c！");
-		System.out.println(a);
-		System.out.println(c);
-	}
-}
