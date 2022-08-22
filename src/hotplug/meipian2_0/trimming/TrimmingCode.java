@@ -22,7 +22,7 @@ public class TrimmingCode implements TrimmingMode{
 	private String dspStringName;
 	private String adUrl;				//信息流获取配置文件
 	private String adAppName;			//信息流获取数据名称
-	private String fladData;			//仅拿当前游戏的数据
+	private String gameData;			//仅拿当前游戏的数据
 	@Override
 	public void init(HashMap<String, Object> map) {
 	}
@@ -51,9 +51,9 @@ public class TrimmingCode implements TrimmingMode{
 				Log.appendInfo("成功修改虚拟内存下的string文件：" + fileString);
 				
 				ReplaceRegular = 
-						new ReplaceRegular(fladData, strBuf);
+						new ReplaceRegular(gameData, strBuf);
 				ReplaceRegular.lineExecute("FLAG_DATA\\s*=\\s*(.*?)\\s*;");
-				Log.appendInfo("仅拿当前游戏的数据：" + fladData);
+				Log.appendInfo("仅拿当前游戏的数据：" + gameData);
 				FileUtils.saveFile(file, strBuf, encoding);
 			}
 			//
